@@ -1,0 +1,55 @@
+while True:
+    print(Fore.CYAN + "\n--- MENU ---")
+    print(Fore.YELLOW + "1 - Cadastrar")
+    print(Fore.YELLOW + "2 - Editar")
+    print(Fore.YELLOW + "3 - Remover")
+    print(Fore.YELLOW + "4 - Consultar")
+    print(Fore.YELLOW + "5 - Mostrar todas")
+    print(Fore.RED + "0 - Sair")
+
+    opcao = input(Fore.GREEN + "Escolha uma opção: ")
+
+    if opcao == "1":
+        usuario = input(Fore.CYAN + "Digite o nome do usuário: ")
+        senha = input(Fore.CYAN + "Digite a senha: ")
+        logins[usuario] = senha
+        print(Fore.MAGENTA + f"Usuário '{usuario}' cadastrado com sucesso!")
+
+    elif opcao == "2":
+        usuario = input(Fore.CYAN + "Digite o nome do usuário para editar: ")
+        if usuario in logins:
+            nova_senha = input(Fore.CYAN + "Digite a nova senha: ")
+            logins[usuario] = nova_senha
+            print(Fore.MAGENTA + f"Senha do usuário '{usuario}' atualizada!")
+        else:
+            print(Fore.RED + "Usuário não encontrado!")
+
+    elif opcao == "3":
+        usuario = input(Fore.CYAN + "Digite o nome do usuário para remover: ")
+        if usuario in logins:
+            del logins[usuario]
+            print(Fore.MAGENTA + f"Usuário '{usuario}' removido!")
+        else:
+            print(Fore.RED + "Usuário não encontrado!")
+
+    elif opcao == "4":
+        usuario = input(Fore.CYAN + "Digite o nome do usuário para consultar: ")
+        if usuario in logins:
+            print(Fore.MAGENTA + f"Senha de '{usuario}': {logins[usuario]}")
+        else:
+            print(Fore.RED + "Usuário não encontrado!")
+
+    elif opcao == "5":
+        if logins:
+            print(Fore.MAGENTA + "\n--- Todas as senhas ---")
+            for u, s in logins.items():
+                print(Fore.YELLOW + f"Usuário: {u} | Senha: {s}")
+        else:
+            print(Fore.RED + "Nenhum usuário cadastrado!")
+
+    elif opcao == "0":
+        print(Fore.RED + "Saindo do programa...")
+        break
+
+    else:
+        print(Fore.RED + "Opção inválida! Tente de novo.")
